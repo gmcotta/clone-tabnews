@@ -4,7 +4,7 @@
   "description": "Repositório sobre o projeto do curso.dev, do Filipe Deschamps.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev"
   },
   "repository": {
     "type": "git",
