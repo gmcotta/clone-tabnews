@@ -1,7 +1,7 @@
 services:
   database:
     image: 'postgres:16.0-alpine3.18'
-    environment:
-      POSTGRES_PASSWORD: 'supersecret'
+    env_file:
+      - ../.env.development
     ports:
-      - "5433:5432"
+      - "${POSTGRES_PORT}:5432"

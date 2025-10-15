@@ -9,7 +9,8 @@
     "lint:fix": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "compose:up": "docker compose -f infra/compose.yaml up -d --force-recreate"
+    "compose:up": "cp .env.development infra/.env && docker compose -f infra/compose.yaml up -d --force-recreate",
+    "compose:down": "docker compose -f infra/compose.yaml down"
   },
   "repository": {
     "type": "git",
