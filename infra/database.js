@@ -7,6 +7,8 @@ async function query(queryObject) {
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
+    ssl: process.env.POSTGRES_SSLMODE,
+    enableChannelBinding: process.env.POSTGRES_CHANNELBINDING
   });
 
   try {
@@ -15,6 +17,7 @@ async function query(queryObject) {
     return result;
   } catch (err) {
     console.error(err);
+    throw err;
   } finally {
     await client.end();
   }
