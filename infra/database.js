@@ -1,6 +1,6 @@
 import { Client } from "pg";
 
-function setSSLInfo() {
+function getSSLInfo() {
   if (process.env.POSTGRES_HOST === 'localhost') return false;
   if (process.env.POSTGRES_SSLMODE === 'true') return true;
   return {
@@ -16,7 +16,7 @@ async function query(queryObject) {
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
-    ssl: setSSLInfo(),
+    ssl: getSSLInfo(),
     enableChannelBinding: process.env.POSTGRES_CHANNELBINDING === 'true'
   });
 
