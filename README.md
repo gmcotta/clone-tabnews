@@ -33,4 +33,5 @@ Repositório sobre o projeto do [curso.dev](https://curso.dev/), do Filipe Desch
 - No terminal, rodar o comando `npm install` para instalar as dependências.
 - Verificar se o Docker está configurado.
 - Copiar o arquivo `.env.example`, renomear como `.env.development`.
-- No terminal, rodar o comando `npm run dev`. Ele vai iniciar o Docker e o NextJS.
+- No terminal, rodar o comando `npm run dev`. Ele vai iniciar o Docker com o banco de dados e o NextJS em `http://localhost:3000`.
+- Para testar o projeto, rode o comando `npm run test` no terminal. Caso queira manter os testes ativos, rode o comando `npm run test:watch`.
