@@ -1,5 +1,14 @@
 import { Client } from "pg";
 
+function setSSLInfo() {
+  if (process.env.POSTGRES_HOST === 'localhost') return false;
+  if (process.env.POSTGRES_SSLMODE === 'true') return true;
+  return {
+    rejectUnauthorized: false,
+    ca: process.env.POSTGRES_CERTIFICATE
+  }
+}
+
 async function query(queryObject) {
   const client = new Client({
     host: process.env.POSTGRES_HOST,
@@ -7,8 +16,8 @@ async function query(queryObject) {
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
-    ssl: process.env.POSTGRES_SSLMODE,
-    enableChannelBinding: process.env.POSTGRES_CHANNELBINDING
+    ssl: setSSLInfo(),
+    enableChannelBinding: process.env.POSTGRES_CHANNELBINDING === 'true'
   });
 
   try {
