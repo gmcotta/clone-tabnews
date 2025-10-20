@@ -13,7 +13,7 @@ export default async function status(req, res) {
 
   const databaseName = process.env.POSTGRES_DB;
   const currentConnectionsQueryResult = await database.query({
-    text: `SELECT count(*)::int AS current_connections FROM pg_stat_activity WHERE datname = $1;`,
+    text: `SELECT count(*)::int AS current_connections FROM pg_stat_activity WHERE datname = $1 AND application_name = '';`,
     values: [databaseName],
   });
   const currentConnections =
