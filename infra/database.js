@@ -1,12 +1,12 @@
 import { Client } from "pg";
 
 function getSSLInfo() {
-  if (process.env.POSTGRES_HOST === 'localhost') return false;
-  if (process.env.POSTGRES_SSLMODE === 'true') return true;
+  if (process.env.POSTGRES_HOST === "localhost") return false;
+  if (process.env.POSTGRES_SSLMODE === "true") return true;
   return {
     rejectUnauthorized: false,
-    ca: process.env.POSTGRES_CERTIFICATE
-  }
+    ca: process.env.POSTGRES_CERTIFICATE,
+  };
 }
 
 async function query(queryObject) {
@@ -17,7 +17,7 @@ async function query(queryObject) {
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
     ssl: getSSLInfo(),
-    enableChannelBinding: process.env.POSTGRES_CHANNELBINDING === 'true'
+    enableChannelBinding: process.env.POSTGRES_CHANNELBINDING === "true",
   });
 
   try {
