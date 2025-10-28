@@ -2,8 +2,8 @@ import { cleanDatabase } from "tests/cleanDatabase";
 import orchestrator from "tests/orchestrator";
 
 beforeAll(async () => {
-  await cleanDatabase();
   await orchestrator.waitForAllServices();
+  await cleanDatabase();
 });
 
 describe("/migrations", () => {
