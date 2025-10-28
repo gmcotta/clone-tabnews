@@ -7,7 +7,7 @@ export default async function migrations(req, res) {
   const allowedMethods = ["GET", "POST"];
   if (!allowedMethods.includes(req.method)) {
     res.status(405).send({
-      error: `Method ${req.method} not allowed.`
+      error: `Method ${req.method} not allowed.`,
     });
   }
 
@@ -46,8 +46,8 @@ export default async function migrations(req, res) {
     }
   } catch (error) {
     res.status(500).send({
-      error: error.message
-    })
+      error: error.message,
+    });
   } finally {
     await dbClient.end();
   }
