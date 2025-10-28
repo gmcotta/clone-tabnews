@@ -1,11 +1,9 @@
-import database from "infra/database";
-
-async function cleanDatabase() {
-  await database.query("DROP SCHEMA public CASCADE; CREATE SCHEMA public;");
-}
+import { cleanDatabase } from "tests/cleanDatabase";
+import orchestrator from "tests/orchestrator";
 
 beforeAll(async () => {
   await cleanDatabase();
+  await orchestrator.waitForAllServices();
 });
 
 describe("/migrations", () => {
