@@ -4,7 +4,8 @@
   "description": "Repositório sobre o projeto do curso.dev, do Filipe Deschamps.",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run compose:up && next dev",
+    "dev": "npm run compose:up && npm run wait-for-pg && npm run migration:up && next dev",
+    "wait-for-pg": "node infra/scripts/wait-for-pg.js",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest --runInBand",
