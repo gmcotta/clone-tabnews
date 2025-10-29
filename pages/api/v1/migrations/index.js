@@ -1,13 +1,13 @@
-import migrationRunner from "node-pg-migrate";
-import { join } from "node:path";
+import migrationRunner from 'node-pg-migrate';
+import { join } from 'node:path';
 
-import database from "infra/database";
+import database from 'infra/database';
 
 export default async function migrations(req, res) {
-  const allowedMethods = ["GET", "POST"];
+  const allowedMethods = ['GET', 'POST'];
   if (!allowedMethods.includes(req.method)) {
     res.status(405).send({
-      error: `Method ${req.method} not allowed.`,
+      error: `Method ${req.method} not allowed.`
     });
   }
 
@@ -17,25 +17,25 @@ export default async function migrations(req, res) {
     const migrationOptions = {
       dbClient,
       // databaseUrl: process.env.DATABASE_URL,
-      dir: join("infra", "migrations"),
-      direction: "up",
+      dir: join('infra', 'migrations'),
+      direction: 'up',
       verbose: true,
-      migrationsTable: "pgmigrations",
+      migrationsTable: 'pgmigrations'
     };
 
-    if (req.method === "GET") {
+    if (req.method === 'GET') {
       const pendingMigrations = await migrationRunner({
         ...migrationOptions,
-        dryRun: true,
+        dryRun: true
       });
       await dbClient.end();
       res.status(200).json(pendingMigrations);
     }
 
-    if (req.method === "POST") {
+    if (req.method === 'POST') {
       const completedMigrations = await migrationRunner({
         ...migrationOptions,
-        dryRun: false,
+        dryRun: false
       });
       await dbClient.end();
       if (completedMigrations.length > 0) {
@@ -46,7 +46,7 @@ export default async function migrations(req, res) {
     }
   } catch (error) {
     res.status(500).send({
-      error: error.message,
+      error: error.message
     });
   } finally {
     await dbClient.end();

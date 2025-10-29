@@ -1,14 +1,14 @@
-import { cleanDatabase } from "tests/cleanDatabase";
-import orchestrator from "tests/orchestrator";
+import { cleanDatabase } from 'tests/cleanDatabase';
+import orchestrator from 'tests/orchestrator';
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
   await cleanDatabase();
 });
 
-describe("/migrations", () => {
-  it("should return 200 when GET to /api/v1/migrations", async () => {
-    const response = await fetch("http://localhost:3000/api/v1/migrations");
+describe('/migrations', () => {
+  it('should return 200 when GET to /api/v1/migrations', async () => {
+    const response = await fetch('http://localhost:3000/api/v1/migrations');
     expect(response.status).toBe(200);
 
     const responseBody = await response.json();
