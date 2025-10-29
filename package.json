@@ -8,6 +8,8 @@
     "wait-for-pg": "node infra/scripts/wait-for-pg.js",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
+    "eslint:check": "npx eslint .",
+    "eslint:fix": "npx eslint --fix .",
     "test": "npm run compose:up && concurrently --names next,jest --hide next --kill-others --success command-jest \"next dev\" \"jest --runInBand --verbose\"",
     "test:watch": "jest --watchAll --runInBand",
     "compose:up": "cp .env.development infra/.env && docker compose -f infra/compose.yaml up -d --force-recreate",
@@ -35,8 +37,18 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@eslint/css": "^0.13.0",
+    "@eslint/js": "^9.38.0",
+    "@eslint/json": "^0.13.2",
+    "@eslint/markdown": "^7.5.0",
     "concurrently": "^9.2.1",
     "dotenv-expand": "^11.0.6",
+    "eslint": "^9.38.0",
+    "eslint-config-next": "^16.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^16.4.0",
     "jest": "^29.6.2",
     "node-pg-migrate": "^6.2.2",
     "prettier": "^3.6.2"
