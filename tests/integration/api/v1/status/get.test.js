@@ -1,3 +1,9 @@
+const { default: orchestrator } = require("tests/orchestrator");
+
+beforeAll(async () => {
+  await orchestrator.waitForAllServices();
+});
+
 describe("/status", () => {
   it("should return 200 when GET to /api/v1/status", async () => {
     const response = await fetch("http://localhost:3000/api/v1/status");
