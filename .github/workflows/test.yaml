@@ -1,0 +1,17 @@
+name: Automated Tests
+on: [pull_request]
+jobs:
+  jest:
+    name: Jest Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.5
+      - name: create .env
+        run: |
+          cp .env.example .env.development
+          cp .env.development infra/.env
+      - run: npm ci
+      - run: npm run test
