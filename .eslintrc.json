@@ -4,7 +4,7 @@
     "next/core-web-vitals",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["jest"],
+  "plugins": ["jest", "no-secrets"],
   "env": {
     "jest/globals": true
   },
@@ -13,6 +13,10 @@
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "no-secrets/no-secrets": [
+      "error",
+      { "additionalRegexes": { "Other Secrets": "secret" } }
+    ]
   }
 }
