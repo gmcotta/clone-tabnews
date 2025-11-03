@@ -55,7 +55,7 @@
     "husky": "9.1.7",
     "jest": "30.2.0",
     "lint-staged": "16.2.6",
-    "node-pg-migrate": "6.2.2",
+    "node-pg-migrate": "8.0.3",
     "prettier": "3.6.2"
   },
   "config": {
