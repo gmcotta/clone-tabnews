@@ -1,9 +1,8 @@
-import { cleanDatabase } from 'tests/cleanDatabase';
 import orchestrator from 'tests/orchestrator';
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
-  await cleanDatabase();
+  await orchestrator.clearDatabase();
 });
 
 describe('POST /api/v1/migrations', () => {
