@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "npm run services:up && npm run services:wait-database && npm run migrations:up && next dev",
+    "postdev": "npm run services:down",
     "test": "npm run services:up && concurrently --names next,jest --hide next --kill-others --success command-jest \"next dev\" \"jest --runInBand --verbose\"",
     "test:watch": "jest --watchAll --runInBand",
+    "posttest": "npm run services:down",
     "services:wait-database": "node infra/scripts/wait-for-pg.js",
     "services:up": "cp .env.development infra/.env && docker compose -f infra/compose.yaml up -d --force-recreate",
     "services:stop": "docker compose -f infra/compose.yaml stop",
